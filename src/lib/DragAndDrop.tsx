@@ -342,7 +342,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
           zones={zones}
           zoneKeyExtractor={zoneKeyExtractor}
           changed={this.state.changed}
-          addedHeight={this.state.addedHeight || 0}
+          addedHeight={0}
           draggedElementStyle={draggedElementStyle}
           onGrant={(grant) => this.setState({ dragging: grant })}
           itemsInZoneStyle={itemsInZoneStyle}

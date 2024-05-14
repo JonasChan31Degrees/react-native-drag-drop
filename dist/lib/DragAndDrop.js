@@ -223,7 +223,7 @@ class DragAndDrop extends Container {
                 this.setState({ scrollY: y });
             }, scrollEventThrottle: 400, contentContainerStyle: [contentContainerStyle, otherStyle], ref: this.ref, onLayout: (e) => this.onSetLayout(e) },
             headerComponent,
-            React.createElement(ZonesContainer, { renderZone: renderZone, zones: zones, zoneKeyExtractor: zoneKeyExtractor, changed: this.state.changed, addedHeight: this.state.addedHeight || 0, draggedElementStyle: draggedElementStyle, onGrant: (grant) => this.setState({ dragging: grant }), itemsInZoneStyle: itemsInZoneStyle, numCollumns: itemsInZoneNumCollumns, itemsDisplay: itemsInZoneDisplay, onZoneLayoutChange: (key, layout) => {
+            React.createElement(ZonesContainer, { renderZone: renderZone, zones: zones, zoneKeyExtractor: zoneKeyExtractor, changed: this.state.changed, addedHeight: 0, draggedElementStyle: draggedElementStyle, onGrant: (grant) => this.setState({ dragging: grant }), itemsInZoneStyle: itemsInZoneStyle, numCollumns: itemsInZoneNumCollumns, itemsDisplay: itemsInZoneDisplay, onZoneLayoutChange: (key, layout) => {
                     const zones = [...this.state.zones];
                     const index = zones.findIndex((z) => zoneKeyExtractor(z) === key);
                     zones[index].layout = layout;

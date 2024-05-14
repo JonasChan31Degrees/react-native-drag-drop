@@ -2,6 +2,11 @@
 
 ![Usage](https://raw.githubusercontent.com/VolkenoMakers/react-native-drag-drop/files/demo.gif)
 
+## Forked Updates
+- Clone the project.
+- Make the changes.
+- Run ```yarn run build```
+
 ## Add it to your project
 
 - Using NPM

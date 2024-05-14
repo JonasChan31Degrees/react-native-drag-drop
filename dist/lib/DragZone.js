@@ -8,8 +8,9 @@ class DragZOne extends Container {
     };
     renderItems = (items) => {
         const { renderItem, itemKeyExtractor, addedHeight, onDrag, itemsInZoneStyle, draggedElementStyle, onGrant, onDragEnd, changed, zoneId, itemsDisplay, numCollumns, } = this.props;
-        if (!items || items.length === 0)
-            return null;
+        if (!items || items.length === 0) {
+            return (React.createElement(ItemsContainer, { itemsContainerStyle: {}, dragging: false, onGrant: onGrant, addedHeight: addedHeight, numCollumns: numCollumns, itemsDisplay: itemsDisplay, changed: changed, draggedElementStyle: draggedElementStyle, itemsInZoneStyle: itemsInZoneStyle, itemKeyExtractor: itemKeyExtractor, renderItem: renderItem, onDragEnd: onDragEnd, onDrag: (e, l, cb) => onDrag(e, l, cb, zoneId), items: [] }));
+        }
         return (React.createElement(ItemsContainer, { itemsContainerStyle: {}, dragging: false, onGrant: onGrant, addedHeight: addedHeight, numCollumns: numCollumns, itemsDisplay: itemsDisplay, changed: changed, draggedElementStyle: draggedElementStyle, itemsInZoneStyle: itemsInZoneStyle, itemKeyExtractor: itemKeyExtractor, renderItem: renderItem, onDragEnd: onDragEnd, onDrag: (e, l, cb) => onDrag(e, l, cb, zoneId), items: items }));
     };
     render() {

@@ -62,7 +62,28 @@ class DragZOne extends Container<DragZOneProps, DragZOneState> {
       numCollumns,
     } = this.props;
 
-    if (!items || items.length === 0) return null;
+    if (!items || items.length === 0)
+    {
+      return (
+        <ItemsContainer
+          itemsContainerStyle={{}}
+          dragging={false}
+          onGrant={onGrant}
+          addedHeight={addedHeight}
+          numCollumns={numCollumns}
+          itemsDisplay={itemsDisplay}
+          changed={changed}
+          draggedElementStyle={draggedElementStyle}
+          itemsInZoneStyle={itemsInZoneStyle}
+          itemKeyExtractor={itemKeyExtractor}
+          renderItem={renderItem}
+          onDragEnd={onDragEnd}
+          onDrag={(e, l, cb) => onDrag(e, l, cb, zoneId)}
+          items={[]}
+        />
+      );
+    }
+
     return (
       <ItemsContainer
         itemsContainerStyle={{}}

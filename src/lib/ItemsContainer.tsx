@@ -87,7 +87,7 @@ class ItemsContainer extends Container<
         onLayout={(e) => {
           this.onSetLayout(e);
         }}
-        style={[itemsContainerStyle]}
+        style={[itemsContainerStyle, newStyle]}
       >
         {items.map((item) => {
           const key = itemKeyExtractor(item);

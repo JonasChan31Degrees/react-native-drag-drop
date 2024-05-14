@@ -29,7 +29,7 @@ class ItemsContainer extends Container {
         }
         return (React.createElement(View, { onLayout: (e) => {
                 this.onSetLayout(e);
-            }, style: [itemsContainerStyle, newStyle] }, items.map((item) => {
+            }, style: [itemsContainerStyle] }, items.map((item) => {
             const key = itemKeyExtractor(item);
             return (React.createElement(DragItem, { key: key, onDrag: onDrag, onGrant: onGrant, changed: changed, draggedElementStyle: draggedElementStyle, addedHeight: addedHeight, itemsInZoneStyle: { ...itemsInZoneStyle, ...newItemsInZoneStyle }, onDragEnd: onDragEnd, item: item, renderItem: renderItem }));
         })));

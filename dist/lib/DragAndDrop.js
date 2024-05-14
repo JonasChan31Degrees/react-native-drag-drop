@@ -218,7 +218,7 @@ class DragAndDrop extends Container {
         return (React.createElement(ScrollView, { onContentSizeChange: (width, height) => {
                 this.setState({ contentSize: { width, height } });
                 this.onSetLayout(null);
-            }, disableScrollViewPanResponder: true, scrollEnabled: !this.state.dragging, style: [{ flex: 1, backgroundColor: "#CCC" }, style, otherStyle], onScroll: (e) => {
+            }, disableScrollViewPanResponder: true, scrollEnabled: !this.state.dragging, style: [{ flex: 1 }, style, otherStyle], onScroll: (e) => {
                 let y = e.nativeEvent.contentOffset.y;
                 this.setState({ scrollY: y });
             }, scrollEventThrottle: 400, contentContainerStyle: [contentContainerStyle, otherStyle], ref: this.ref, onLayout: (e) => this.onSetLayout(e) },

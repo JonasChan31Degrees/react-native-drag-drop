@@ -325,7 +325,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
         }}
         disableScrollViewPanResponder={true}
         scrollEnabled={!this.state.dragging}
-        style={[{ flex: 1, backgroundColor: "#CCC" }, style, otherStyle]}
+        style={[{ flex: 1 }, style, otherStyle]}
         onScroll={(e) => {
           let y = e.nativeEvent.contentOffset.y;
           this.setState({ scrollY: y });

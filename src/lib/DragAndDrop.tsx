@@ -336,24 +336,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
         onLayout={(e) => this.onSetLayout(e)}
       >
         {headerComponent}
-        <ItemsContainer
-          itemsContainerStyle={itemsContainerStyle}
-          dragging={dragging}
-          itemKeyExtractor={itemKeyExtractor}
-          addedHeight={this.state.addedHeight || 0}
-          onGrant={(grant) => this.setState({ dragging: grant })}
-          renderItem={renderItem}
-          numCollumns={itemsNumCollumns}
-          itemsDisplay={itemsDisplay}
-          draggedElementStyle={draggedElementStyle}
-          changed={this.state.changed}
-          layout={itemsContainerLayout}
-          onLayout={(layout) => this.setState({ itemsContainerLayout: layout })}
-          onDragEnd={this.onDragEnd}
-          itemsContainerHeightFixe={itemsContainerHeightFixe}
-          onDrag={this.onDrag}
-          items={items}
-        />
+        
         <ZonesContainer
           renderZone={renderZone}
           zones={zones}
@@ -377,6 +360,26 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
           onDragEnd={this.onDragEnd}
           onDrag={this.onDrag}
         />
+
+        <ItemsContainer
+          itemsContainerStyle={itemsContainerStyle}
+          dragging={dragging}
+          itemKeyExtractor={itemKeyExtractor}
+          addedHeight={this.state.addedHeight || 0}
+          onGrant={(grant) => this.setState({ dragging: grant })}
+          renderItem={renderItem}
+          numCollumns={itemsNumCollumns}
+          itemsDisplay={itemsDisplay}
+          draggedElementStyle={draggedElementStyle}
+          changed={this.state.changed}
+          layout={itemsContainerLayout}
+          onLayout={(layout) => this.setState({ itemsContainerLayout: layout })}
+          onDragEnd={this.onDragEnd}
+          itemsContainerHeightFixe={itemsContainerHeightFixe}
+          onDrag={this.onDrag}
+          items={items}
+        />
+
         {footerComponent}
       </ScrollView>
     );

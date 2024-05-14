@@ -336,7 +336,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
         onLayout={(e) => this.onSetLayout(e)}
       >
         {headerComponent}
-        <ItemsContainer
+        {/* <ItemsContainer
           itemsContainerStyle={itemsContainerStyle}
           dragging={dragging}
           itemKeyExtractor={itemKeyExtractor}
@@ -353,7 +353,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
           itemsContainerHeightFixe={itemsContainerHeightFixe}
           onDrag={this.onDrag}
           items={items}
-        />
+        /> */}
         <ZonesContainer
           renderZone={renderZone}
           zones={zones}

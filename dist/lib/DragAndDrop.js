@@ -1,7 +1,6 @@
 import React from "react";
 import { ScrollView } from "react-native";
 import Container from "./Container";
-import ItemsContainer from "./ItemsContainer";
 import ZonesContainer from "./ZonesContainer";
 const PERCENT = 0.15;
 class DragAndDrop extends Container {
@@ -223,7 +222,6 @@ class DragAndDrop extends Container {
                 this.setState({ scrollY: y });
             }, scrollEventThrottle: 400, contentContainerStyle: [contentContainerStyle, otherStyle], ref: this.ref, onLayout: (e) => this.onSetLayout(e) },
             headerComponent,
-            React.createElement(ItemsContainer, { itemsContainerStyle: itemsContainerStyle, dragging: dragging, itemKeyExtractor: itemKeyExtractor, addedHeight: this.state.addedHeight || 0, onGrant: (grant) => this.setState({ dragging: grant }), renderItem: renderItem, numCollumns: itemsNumCollumns, itemsDisplay: itemsDisplay, draggedElementStyle: draggedElementStyle, changed: this.state.changed, layout: itemsContainerLayout, onLayout: (layout) => this.setState({ itemsContainerLayout: layout }), onDragEnd: this.onDragEnd, itemsContainerHeightFixe: itemsContainerHeightFixe, onDrag: this.onDrag, items: items }),
             React.createElement(ZonesContainer, { renderZone: renderZone, zones: zones, zoneKeyExtractor: zoneKeyExtractor, changed: this.state.changed, addedHeight: this.state.addedHeight || 0, draggedElementStyle: draggedElementStyle, onGrant: (grant) => this.setState({ dragging: grant }), itemsInZoneStyle: itemsInZoneStyle, numCollumns: itemsInZoneNumCollumns, itemsDisplay: itemsInZoneDisplay, onZoneLayoutChange: (key, layout) => {
                     const zones = [...this.state.zones];
                     const index = zones.findIndex((z) => zoneKeyExtractor(z) === key);

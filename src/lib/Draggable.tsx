@@ -111,8 +111,8 @@ class Draggable extends Component<DraggableProps, DraggableState> {
         style={[panStyle, style]}
       >
         <TouchableOpacity
-          delayLongPress={0}
-          onLongPress={() => this.setState({ pressed: true }, () => {})}
+          // delayLongPress={0}
+          // onLongPress={() => this.setState({ pressed: true }, () => {})}
         >
           {this.props.children}
         </TouchableOpacity>

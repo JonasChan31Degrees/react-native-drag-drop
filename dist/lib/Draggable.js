@@ -71,7 +71,7 @@ class Draggable extends Component {
             style = { ...style, ...(draggedElementStyle || { opacity: 0.6 }) };
         }
         return (React.createElement(Animated.View, { ...this.panResponder?.panHandlers, style: [panStyle, style] },
-            React.createElement(TouchableOpacity, { delayLongPress: 0, onLongPress: () => this.setState({ pressed: true }, () => { }) }, this.props.children)));
+            React.createElement(TouchableOpacity, null, this.props.children)));
     }
 }
 export default Draggable;

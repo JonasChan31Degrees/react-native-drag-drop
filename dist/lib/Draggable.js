@@ -23,6 +23,9 @@ class Draggable extends Component {
         this.setState((old) => {
             if (old.dragging) {
                 this.props.onGrant(true);
+                if (!this.props.onDragEnd(gesture)) {
+                    this.state.pan.setValue({ x: 0, y: 0 });
+                }
                 return { ...old, dragging: false, pressed: false };
             }
             else {

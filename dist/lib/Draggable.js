@@ -23,9 +23,6 @@ class Draggable extends Component {
         this.setState((old) => {
             if (old.dragging) {
                 this.props.onGrant(true);
-                if (!this.props.onDragEnd(gesture)) {
-                    this.state.pan.setValue({ x: 0, y: 0 });
-                }
                 return { ...old, dragging: false, pressed: false };
             }
             else {
@@ -71,7 +68,7 @@ class Draggable extends Component {
             style = { ...style, ...(draggedElementStyle || { opacity: 0.6 }) };
         }
         return (React.createElement(Animated.View, { ...this.panResponder?.panHandlers, style: [panStyle, style] },
-            React.createElement(TouchableOpacity, null, this.props.children)));
+            React.createElement(TouchableOpacity, { delayLongPress: 0, onLongPress: () => this.setState({ pressed: true }, () => { }) }, this.props.children)));
     }
 }
 export default Draggable;

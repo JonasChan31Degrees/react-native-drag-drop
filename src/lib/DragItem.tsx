@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import {
   LayoutChangeEvent,
   PanResponderGestureState,
+  TouchableOpacityProps,
   View,
   ViewStyle,
 } from "react-native";
@@ -30,6 +31,8 @@ interface DragItemProps extends ContainerProps {
   itemsInZoneStyle?: ViewStyle;
   item: any;
   renderItem: (item: any) => ReactElement;
+  propsInItems?: TouchableOpacityProps;
+  func?: (i?: any, cb?: (i?: any) => void) => void;
 }
 class DragItem extends Container<DragItemProps, DragItemState> {
   state: DragItemState = {
@@ -47,6 +50,7 @@ class DragItem extends Container<DragItemProps, DragItemState> {
       addedHeight,
       itemsInZoneStyle,
       draggedElementStyle,
+      propsInItems,
     } = this.props;
     const child = renderItem(item);
     const newChild = React.cloneElement(child, {
@@ -66,6 +70,9 @@ class DragItem extends Container<DragItemProps, DragItemState> {
           ...itemsInZoneStyle,
         }}
         onDragEnd={() => onDragEnd(item)}
+        propsInItems={propsInItems}
+        item={item}
+        func={this.props.func}
       >
         {newChild}
       </Draggable>

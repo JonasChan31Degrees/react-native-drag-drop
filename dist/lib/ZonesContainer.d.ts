@@ -23,6 +23,6 @@ interface ZonesContainerProps extends ContainerProps {
 }
 declare class ZonesContainer extends Container<ZonesContainerProps, ZonesContainerState> {
     ref: React.RefObject<View>;
-    render(): React.JSX.Element;
+    render(): JSX.Element;
 }
 export default ZonesContainer;

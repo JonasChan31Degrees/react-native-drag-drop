@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Animated, PanResponder, TouchableOpacity, } from "react-native";
+import _ from "lodash";
 class Draggable extends Component {
     state = {
         pan: new Animated.ValueXY(),
         dragging: false,
         pressed: false,
+        count: 0,
     };
     panResponder;
     onResponderMove = (e, gesture) => {
@@ -57,6 +59,24 @@ class Draggable extends Component {
             onStartShouldSetPanResponderCapture: () => this.state.pressed,
         });
     }
+    onClickItem = () => {
+        let { func, item } = this.props;
+        const { count } = this.state;
+        this.setState({ count: count + 1 });
+        if (count === 1 && func && typeof func === "function") {
+            this.setState({ count: 0 });
+            func(item, this.props.propsInItems?.onPress);
+        }
+        else {
+            setTimeout(() => {
+                this.setState({ count: 0 });
+            }, 100);
+            if (func !== undefined) {
+                func(item, this.props.propsInItems?.onPress);
+            }
+        }
+    };
+    onPress = _.debounce(this.onClickItem, 300);
     render() {
         const panStyle = {
             transform: this.state.pan.getTranslateTransform(),
@@ -71,7 +91,7 @@ class Draggable extends Component {
             style = { ...style, ...(draggedElementStyle || { opacity: 0.6 }) };
         }
         return (React.createElement(Animated.View, { ...this.panResponder?.panHandlers, style: [panStyle, style] },
-            React.createElement(TouchableOpacity, { delayLongPress: 0, onLongPress: () => this.setState({ pressed: true }, () => { }) }, this.props.children)));
+            React.createElement(TouchableOpacity, { delayLongPress: 0, onLongPress: () => this.setState({ pressed: true }, () => { }), onPress: this.onPress, ...this.props.propsInItems }, this.props.children)));
     }
 }
 export default Draggable;

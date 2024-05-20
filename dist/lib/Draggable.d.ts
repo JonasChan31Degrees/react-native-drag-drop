@@ -1,10 +1,12 @@
-import React, { Component, ReactNode } from "react";
-import { Animated, GestureResponderEvent, PanResponderGestureState, PanResponderInstance, ViewStyle } from "react-native";
+import { Component, ReactNode } from "react";
+import { Animated, GestureResponderEvent, PanResponderGestureState, PanResponderInstance, TouchableOpacityProps, ViewStyle } from "react-native";
 import { LayoutProps } from "./Container";
+import _ from "lodash";
 export interface DraggableState {
     pan: Animated.ValueXY;
     dragging: boolean;
     pressed: boolean;
+    count: number;
 }
 export interface DraggableProps {
     addedHeight: number;
@@ -15,18 +17,24 @@ export interface DraggableProps {
     onDragEnd: (gesture: PanResponderGestureState) => boolean;
     draggedElementStyle?: ViewStyle;
     style: ViewStyle;
+    propsInItems?: TouchableOpacityProps;
+    item: any;
+    func?: (i?: any, cb?: (i?: any) => void) => void;
 }
 declare class Draggable extends Component<DraggableProps, DraggableState> {
     state: {
         pan: Animated.ValueXY;
         dragging: boolean;
         pressed: boolean;
+        count: number;
     };
     panResponder?: PanResponderInstance;
     onResponderMove: (e: GestureResponderEvent, gesture: PanResponderGestureState) => void;
     onDragEnd: (e: GestureResponderEvent, gesture: PanResponderGestureState) => void;
     onEnd: (e: GestureResponderEvent, gesture: PanResponderGestureState) => void;
     UNSAFE_componentWillMount(): void;
-    render(): React.JSX.Element;
+    onClickItem: () => void;
+    onPress: _.DebouncedFunc<() => void>;
+    render(): JSX.Element;
 }
 export default Draggable;

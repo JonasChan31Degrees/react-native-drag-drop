@@ -46,6 +46,6 @@ declare class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> 
     UNSAFE_componentWillReceiveProps(nextProps: DragAndDropProps): void;
     onDrag: (gesture: PanResponderGestureState, layoutElement: LayoutProps | null, cb: Function, zoneId: any) => void;
     onDragEnd: (item: any) => boolean;
-    render(): React.JSX.Element;
+    render(): JSX.Element;
 }
 export default DragAndDrop;

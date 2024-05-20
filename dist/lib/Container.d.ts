@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { LayoutChangeEvent } from "react-native";
-export type Display = "row" | "collumn";
-export type LayoutProps = {
+export declare type Display = "row" | "collumn";
+export declare type LayoutProps = {
     x: number;
     y: number;
     width: number;
@@ -22,6 +22,6 @@ declare class Container<P extends ContainerProps, S extends ContainerState> exte
     componentDidMount(): void;
     componentWillUnmount(): void;
     onSetLayout: (e: LayoutChangeEvent | null) => void;
-    render(): React.JSX.Element;
+    render(): JSX.Element;
 }
 export default Container;

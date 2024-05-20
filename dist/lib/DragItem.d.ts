@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { PanResponderGestureState, View, ViewStyle } from "react-native";
+import { PanResponderGestureState, TouchableOpacityProps, View, ViewStyle } from "react-native";
 import Container, { ContainerProps, ContainerState, LayoutProps } from "./Container";
 interface DragItemState extends ContainerState {
     layout: LayoutProps | null;
@@ -14,10 +14,12 @@ interface DragItemProps extends ContainerProps {
     itemsInZoneStyle?: ViewStyle;
     item: any;
     renderItem: (item: any) => ReactElement;
+    propsInItems?: TouchableOpacityProps;
+    func?: (i?: any, cb?: (i?: any) => void) => void;
 }
 declare class DragItem extends Container<DragItemProps, DragItemState> {
     state: DragItemState;
     ref: React.RefObject<View>;
-    render(): React.JSX.Element;
+    render(): JSX.Element;
 }
 export default DragItem;

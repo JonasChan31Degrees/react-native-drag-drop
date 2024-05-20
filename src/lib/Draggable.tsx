@@ -6,14 +6,17 @@ import {
   PanResponderGestureState,
   PanResponderInstance,
   TouchableOpacity,
+  TouchableOpacityProps,
   ViewStyle,
 } from "react-native";
 import { LayoutProps } from "./Container";
+import _ from "lodash";
 
 export interface DraggableState {
   pan: Animated.ValueXY;
   dragging: boolean;
   pressed: boolean;
+  count: number;
 }
 
 export interface DraggableProps {
@@ -30,12 +33,16 @@ export interface DraggableProps {
   onDragEnd: (gesture: PanResponderGestureState) => boolean;
   draggedElementStyle?: ViewStyle;
   style: ViewStyle;
+  propsInItems?: TouchableOpacityProps;
+  item: any;
+  func?: (i?: any, cb?: (i?: any) => void) => void;
 }
 class Draggable extends Component<DraggableProps, DraggableState> {
   state = {
     pan: new Animated.ValueXY(),
     dragging: false,
     pressed: false,
+    count: 0,
   };
   panResponder?: PanResponderInstance;
   onResponderMove = (
@@ -90,6 +97,31 @@ class Draggable extends Component<DraggableProps, DraggableState> {
       onStartShouldSetPanResponderCapture: () => this.state.pressed,
     });
   }
+
+  onClickItem = () => {
+    let { func, item } = this.props;
+    const { count } = this.state;
+    this.setState({ count: count + 1 });
+    if (count === 1 && func && typeof func === "function")
+    {
+      this.setState({ count: 0 });
+      func(item, this.props.propsInItems?.onPress);
+    }
+    else
+    {
+      setTimeout(() => {
+        this.setState({ count: 0 });
+      }, 100);
+
+      if (func !== undefined)
+      {
+        func(item, this.props.propsInItems?.onPress);
+      }
+    }
+  };
+
+  onPress = _.debounce(this.onClickItem, 300);
+
   render() {
     const panStyle: ViewStyle = {
       //@ts-ignore
@@ -113,6 +145,8 @@ class Draggable extends Component<DraggableProps, DraggableState> {
         <TouchableOpacity
           delayLongPress={0}
           onLongPress={() => this.setState({ pressed: true }, () => {})}
+          onPress={this.onPress}
+          {...this.props.propsInItems}
         >
           {this.props.children}
         </TouchableOpacity>

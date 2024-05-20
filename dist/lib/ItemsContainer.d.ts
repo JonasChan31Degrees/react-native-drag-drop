@@ -26,6 +26,6 @@ interface ItemsContainerProps extends ContainerProps {
 declare class ItemsContainer extends Container<ItemsContainerProps, ItemsContainerState> {
     ref: React.RefObject<View>;
     onLayoutCallback: () => void;
-    render(): React.JSX.Element;
+    render(): JSX.Element;
 }
 export default ItemsContainer;
